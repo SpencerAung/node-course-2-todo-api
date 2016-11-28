@@ -5,7 +5,7 @@ var authenticate = (req, res, next) => {
 
 	User.findByToken(token).then((user) => {
 		if (!user) {
-			return Promise.rejct();
+			return Promise.reject();
 		}
 		req.user = user;
 		req.token = token;
@@ -13,6 +13,6 @@ var authenticate = (req, res, next) => {
 	}).catch( (e) => {
 		res.status(401).send();
 	});	
-}
+};
 
 module.exports = {authenticate};

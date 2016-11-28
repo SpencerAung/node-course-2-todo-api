@@ -19,7 +19,7 @@ var UserSchema = new mongoose.Schema({
 	password: {
 		type: String,
 		required: true,
-		minlength:1,
+		minlength:6,
 		trim: true
 	},
 	tokens: [{
@@ -77,7 +77,7 @@ UserSchema.pre('save', function(next){
 		bcrypt.hash(user.password, salt, (err, hash)=>{
 			user.password = hash;
 			next();
-		})
+		});
 	});
 	}else{
 		next();
